@@ -1,0 +1,112 @@
+$var title:Rockmote
+$var style:
+    <style type="text/css">
+      tr {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+        cursor: default;
+      }
+    </style>
+$if config.freshman:
+    $var script:
+        <script>
+          $$(window).load(function(){
+              $$("#myModal").modal("show");
+              $$("#save_paths_btn").click(function(){
+                $$.post(
+                  '/settings',
+                  {paths:$$("#paths").val()},
+                  function(data){
+                    $$("#myModal").modal("hide");
+                });
+              });
+              $$("#close_modal_btn").click(function(){
+                $$("#myModal").modal("hide");
+              });
+          });
+        </script>
+$else:
+    $var script:
+
+<div class="modal hide fade" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>初次见面</h3>
+  </div>
+  <form class="form-horizontal">
+    <div class="modal-body">
+      <div class="control-group">
+        <h4>看起来你还没有设置歌曲搜索路径，在下面的小框中填一下吧</h4>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="textarea">搜索路径</label>
+        <div class="controls">
+          <textarea class="input-xlarge" name="paths" rows="3" id="paths"></textarea>
+          <p class="help-block">可填写多个，以回车分割</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn btn-primary" id="save_paths_btn">保存</a>
+      <a href="#" class="btn" id="close_modal_btn">关闭</a>
+    </div>
+  </form>
+</div>
+<div class="row-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width:100px;">
+          <div class="btn-group">
+            <button class="btn btn-mini">Action</button>
+            <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">全选</a></li>
+              <li><a href="#">取消全选</a></li>
+              <li class="divider"></li>
+              <li><a href="#">加入播放列表</a></li>
+            </ul>
+          </div>
+        </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Language</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox"/></td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>CSS</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox"/></td>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>Javascript</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox"/></td>
+        <td>Stu</td>
+        <td>Dent</td>
+        <td>HTML</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <ul>
+      <li><a href="#">Prev</a></li>
+      <li class="active">
+        <a href="#">1</a>
+      </li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">Next</a></li>
+    </ul>
+  </div>
+</div><!--/row-->
